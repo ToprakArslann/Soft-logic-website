@@ -73,6 +73,9 @@ export default function SmoothHero() {
             }
         }
     }, []);
+    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
     return (
         <section ref={containerRef} className="h-[500vh] flex justify-center">
             <motion.div style={{ width: widthProgress, borderRadius: roundedProgress }} className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
@@ -84,15 +87,15 @@ export default function SmoothHero() {
                     preload="auto"
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 flex flex-col items-center justify-between">
+                <motion.div style={{ scale, opacity }} className="absolute inset-0 flex flex-col items-center justify-between pointer-events-none">
                     <div className="flex flex-col items-center justify-center text-center h-full">
                         <h2 className="text-4xl font-semibold tracking-tight">Where imagination feels real.</h2>
                         <p className="text-xl tracking-tight">A creative laboratory for 3D design, interactive <br /> experiences, and digital products.</p>
                     </div>
-                    <div className="flex items-center justify-center h-full">
+                    <div className="flex items-center justify-center h-full pointer-events-auto">
                         <button className="flex items-center justify-center p-4 text-xl tracking-tight border-px border-[#F0EFEB] bg-[#F0EFEB] rounded-2xl [box-shadow:0px_0px_0px_1px_rgba(230,230,230,0.4),0px_3px_4px_-1px_rgba(0,0,0,0.1),0px_1px_1px_rgba(0,0,0,0.25),inset_0px_1px_0px_#FFFFFF] hover:cursor-pointer">Dive Into Journey</button>
                     </div>
-                </div>
+                </motion.div>
             </motion.div>
         </section>
     );
