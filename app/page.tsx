@@ -6,7 +6,8 @@ import CTA from "@/components/cta";
 import ReactLenis from "lenis/react";
 import { geistSans } from "./layout";
 
-export default function Home() {
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return <main className={`flex flex-col ${geistSans.variable}`}>
     <ReactLenis root />
     <Hero />
